@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Hero List</title>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+<!-- Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<!-- Google Fonts for modern typography -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+
+<script>
+function searchGame() {
+  var input = document.getElementById("searchInput").value.trim().toLowerCase();
+  var cards = document.getElementsByClassName("game-card");
+  var found = false; // ตรวจสอบว่ามีการ์ดที่ตรงกับการค้นหาหรือไม่
+
+  Array.from(cards).forEach(function (card) {
+    var gameTitle = card.getAttribute("data-game").toLowerCase();
+    if (gameTitle.includes(input)) {
+      card.style.display = "block"; // แสดงการ์ดที่ค้นหาเจอ
+      found = true;
+    } else {
+      card.style.display = "none"; // ซ่อนการ์ดที่ไม่ตรง
+    }
+  });
+
+  // ถ้าไม่พบข้อมูลที่ค้นหา
+  var noResultsMessage = document.getElementById("noResults");
+  if (!found) {
+    if (!noResultsMessage) {
+      noResultsMessage = document.createElement("div");
+      noResultsMessage.id = "noResults";
+      noResultsMessage.innerHTML = "<p style='color: white; text-align: center;'>ไม่พบผลลัพธ์</p>";
+      document.querySelector(".game-cards-header").appendChild(noResultsMessage);
+    }
+  } else {
+    if (noResultsMessage) {
+      noResultsMessage.remove();
+    }
+  }
+}
+</script>
+
+<style>
+  body {
+    background: url('bg.jpg') no-repeat center center fixed;
+    background-size: cover;
+    background-color: #04142f;
+    font-family: 'Roboto', sans-serif;
+    padding-top: 70px; /* Adjust padding for navbar */
+  }
+
+  /* Navbar Styles */
+  .navbar {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 15px 0;
+  }
+
+  .navbar-brand img {
+    height: 60px;
+  }
+
+  .navbar-nav .nav-link {
+    color: #fff !important;
+    font-size: 16px;
+    padding: 8px 15px;
+    text-transform: uppercase;
+  }
+
+  .navbar-nav .nav-link:hover {
+    color: #d28af2 !important;
+    text-decoration: underline;
+  }
+
+  .navbar-toggler {
+    background-color: #d28af2;
+  }
+  /* Center the Heading */
+  .game-cards-header {
+    margin-top: 50px;
+    margin-bottom: 30px;
+  }
+
+  .heading-box {
+    display: inline-block;
+    background: linear-gradient(135deg, #1e2a78, #9a1fa6); /* Dark to purple gradient */
+    padding: 13px 20px;  /* ลดขนาด padding */
+    border-radius: 50px;  /* ลดมุม */
+    text-align: left; /* Align the text to the left */
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3); /* ปรับขนาดเงา */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  /* Heading Text Styling */
+  .heading-box h2 {
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 22px; /* ลดขนาดฟอนต์ */
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px; /* ลดการเว้นระยะระหว่างตัวอักษร */
+  }
+
+  /* Hover Effect to Make the Box Interactive */
+  .heading-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 15px 35px rgba(0, 0, 0, 0.4);
+  }
+	
+  /* Card Styles */
+  .card {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  }
+
+  .card-img-top {
+    border-radius: 12px 12px 0 0;
+  }
+
+  .card-body {
+    padding: 20px;
+  }
+
+  .card-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+  }
+
+  .card-text {
+    font-size: 14px;
+    color: #777;
+    line-height: 1.6;
+  }
+
+  .btn-dark, .btn-info {
+    border-radius: 30px;
+    padding: 10px 30px;
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .btn-dark {
+    background-color: #333;
+    color: #fff;
+  }
+
+  .btn-dark:hover {
+    background-color: #444;
+  }
+
+  .btn-info {
+    background-color: #d28af2;
+    color: #fff;
+  }
+
+  .btn-info:hover {
+    background-color: #b25cd9;
+  }
+
+  
+  /* Search Bar Styles */
+  .search-bar {
+    margin: 30px auto;
+    max-width: 600px;
+    text-align: center;
+  }
+
+  .search-bar input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 30px;
+    border: 1px solid #ddd;
+  }
+
+  .search-bar input:focus {
+    outline: none;
+    border-color: #d28af2;
+  }
+
+  /* Card Layout Adjustments */
+  .game-card {
+    margin-bottom: 30px;
+  }
+
+  @media (min-width: 768px) {
+    .game-card {
+      flex: 1 1 22%;
+      margin: 10px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .game-card {
+      flex: 1 1 100%;
+    }
+	  
+  }
+  /* Footer Styles */
+  footer {
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+  }
+
+  footer a {
+    color: white;
+    margin: 0 15px;
+    font-size: 16px;
+    text-decoration: none;
+  }
+
+  footer a:hover {
+    color: #d28af2;
+  }
+
+  footer .social-icons a {
+    color: white;
+    font-size: 28px;
+    margin: 0 15px;
+  }
+
+  footer .social-icons a:hover {
+    color: #d28af2;
+  }
+
+</style>
+<script>
+  $(document).ready(function () {
+    $(".upcoming-event").click(function (e) {
+      e.preventDefault();
+      alert("📢 พบกันเร็วๆนี้! ติดตามข่าวสารเพิ่มเติมได้ที่หน้าเว็บไซต์ของเรา");
+    });
+  });
+</script>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-md navbar-dark fixed-top">
+  <a class="navbar-brand" href="homepang.html"> <img src="lo.png" alt="logo"> </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="myNavbar">
+    <ul class="navbar-nav mx-auto">
+      <li class="nav-item active"><a class="nav-link" href="homepang.html">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="Hero list.html">Hero list</a></li>
+      <li class="nav-item"><a class="nav-link" href="News.html">News</a></li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="ddcontract" data-toggle="dropdown">Events</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item upcoming-event" href="#">Skin Free</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <a href="login.html" class="btn btn-outline-success my-2 my-sm-0">LOGIN</a>
+</nav>
+
+
+
+  <!-- Search Section -->
+  <div class="game-cards-header text-center">
+    <div class="heading-box">
+      <h2>Search Hero List</h2>
+    </div>
+  </div>
+  <div class="search-bar">
+    <form class="form-inline justify-content-center">
+      <input type="text" id="searchInput" class="form-control" placeholder="Search..." onkeyup="searchGame()">
+    </form>
+  </div>
+
+  <!-- Game Cards Section -->
+  /div>
+	  <div class="game-cards-header ">
+    <div class="heading-box">
+      <h2>Dark Slayer</h2>
+    </div>
+  </div>
+
+  <div class="row d-flex justify-content-between">
+    <div class="col-md-3 game-card" data-game="Florentino">
+      <div class="card">
+        <img class="card-img-top" src="Florentino.jfif" alt="Florentino">
+        <div class="card-body">
+          <h5 class="card-title">Florentino</h5>
+          <p class="card-text">1v1 ได้ดี มีความคล่องตัวสูงสามารถทำคอมโบได้ต่อเนื่อง</p>
+          <a class="btn btn-dark" href="Review4.html">เลือกตัวละคร</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 game-card" data-game="Airi">
+      <div class="card">
+        <img class="card-img-top" src="Airi.jpeg" alt="Airi">
+        <div class="card-body">
+          <h5 class="card-title">Airi</h5>
+          <p class="card-text">มีความคล่องตัวสูง มีสกิลทำให้สามารถหยุดศัตรูได้</p>
+          <a class="btn btn-dark" href="Review2.html">เลือกตัวละคร</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 game-card" data-game="Omen">
+      <div class="card">
+        <img class="card-img-top" src="Omen.jpg" alt="Omen">
+        <div class="card-body">
+          <h5 class="card-title">Omen</h5>
+          <p class="card-text">จุดเด่น โซโล่ 1v1 โหด ดูดเลือดดี คอมโบต่อเนื่อง</p>
+          <a class="btn btn-dark" href="Review15.html">เลือกตัวละคร</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 game-card" data-game="Riktor">
+      <div class="card">
+        <img class="card-img-top" src="Riktor.jpg" alt="Riktor">
+        <div class="card-body">
+          <h5 class="card-title">Riktor</h5>
+          <p class="card-text">ดาเมจแรง คล่องตัว ปรับเปลี่ยนสไตล์การโจมตีตามพื้นดิน</p>
+          <a class="btn btn-dark" href="Review14.html">เลือกตัวละคร</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Footer -->
+<footer>
+    <div class="social-icons">
+    <a href="https://www.facebook.com/share/15y4MdSMxr/?mibextid=wwXIfr"><i class="fab fa-facebook"></i></a>
+    <a href="https://line.me/ti/g2/cnnSU9R1-YX_oiuOVE_eayRZbWswiarEbQ5B3Q?utm_source=invitation&utm_medium=link_copy&utm_campaign=default"><i class="fab fa-line"></i></a>
+  </div>
+  
+  <div>
+    <span>© 2025 IS Game Center</span>
+  </div>
+</footer>
+
+</body>
+</html>

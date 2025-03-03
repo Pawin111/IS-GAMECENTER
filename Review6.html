@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Home</title>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+<!-- Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<!-- Google Fonts for modern typography -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+  body {
+    background: url('Bg.jpg') no-repeat center center fixed;
+    background-size: cover;
+    background-color: #04142f;
+    font-family: 'Roboto', sans-serif;
+  }
+
+  /* Navbar Styles */
+  .navbar {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 15px 0;
+  }
+
+  .skill-suggestion h5 {
+      color: #ffffff; /* สีส้ม */
+    }
+
+  .navbar-brand img {
+    height: 70px;
+  }
+
+  .navbar-nav .nav-link {
+    color: #fff !important;
+    font-size: 16px;
+    padding: 8px 15px;
+    text-transform: uppercase;
+  }
+
+  .navbar-nav .nav-link:hover {
+    color: #d28af2 !important;
+  }
+
+  .navbar-toggler {
+    background-color: #d28af2;
+  }
+
+  /* Carousel Styles */
+  .carousel {
+    margin-top: 80px;
+  }
+
+  .carousel-item img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Card Styles */
+  .card {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  }
+
+  .card-img-top {
+    border-radius: 12px 12px 0 0;
+  }
+
+  .card-body {
+    padding: 25px;
+  }
+
+  .card-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+  }
+
+  .card-text {
+    font-size: 14px;
+    color: #777;
+    line-height: 1.6;
+  }
+
+  .btn-dark, .btn-info {
+    border-radius: 30px;
+    padding: 10px 30px;
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .btn-dark {
+    background-color: #333;
+    color: #fff;
+  }
+
+  .btn-dark:hover {
+    background-color: #444;
+  }
+
+  .btn-info {
+    background-color: #d28af2;
+    color: #fff;
+  }
+
+  .btn-info:hover {
+    background-color: #b25cd9;
+  }
+  body {
+      background-color: #f8f9fa;
+    }
+    .review-section {
+      margin-top: 50px;
+      padding: 30px;
+      background-color: #ffffff;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    .character-info {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-top: 120px;
+      margin-bottom: 30px;
+    }
+    .character-info img {
+      border-radius: 10px;
+      width: 300px;
+      height: 300px;
+      object-fit: cover;
+    }
+    .character-info .info {
+      margin-left: 25px;
+      margin-bottom: 20px;
+      background-color: #eeeeee;
+      border-radius: 12px;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+      padding: 15px;
+    }
+    .review-form h4, .character-rating h5 {
+      font-size: 20px;
+      color: #ffffff;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+    .stars {
+      display: flex;
+      font-size: 24px;
+      direction: row-reverse;
+      color: #ccc;
+      cursor: pointer;
+    }
+    .stars input {
+      display: none;
+    }
+    .stars label {
+      padding: 0 5px;
+    }
+    .stars input:checked ~ label,
+    .stars input:checked ~ label ~ label {
+      color: #ff9900;
+    }
+    .review-form textarea {
+      width: 100%;
+      height: 120px;
+      padding: 12px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      border: 1px solid #f1efef;
+      font-size: 14px;
+    }
+    .review-form button {
+      background-color: #28a745;
+      color: white;
+      padding: 12px 25px;
+      border-radius: 25px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .review-form button:hover {
+      background-color: #218838;
+    }
+    .review-card {
+      margin-bottom: 20px;
+      background-color: #f9f9f9;
+      border-radius: 12px;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+      padding: 15px;
+    }
+    .review-card .card-body {
+      padding: 10px;
+
+    }
+    .review-card .review-text {
+      font-size: 15px;
+      color: #555;
+      margin-bottom: 10px;
+    }
+    .review-card .review-date {
+      font-size: 12px;
+      color: #888;
+    }
+  /* Footer Styles */
+  footer {
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+  }
+
+  footer a {
+    color: white;
+    margin: 0 15px;
+    font-size: 16px;
+    text-decoration: none;
+  }
+
+  footer a:hover {
+    color: #d28af2;
+  }
+
+  footer .social-icons a {
+    color: white;
+    font-size: 28px;
+    margin: 0 15px;
+  }
+
+  footer .social-icons a:hover {
+    color: #d28af2;
+  }
+</style>
+<script>
+  $(document).ready(function () {
+    $(".upcoming-event").click(function (e) {
+      e.preventDefault();
+      alert("📢 พบกันเร็วๆนี้! ติดตามข่าวสารเพิ่มเติมได้ที่หน้าเว็บไซต์ของเรา");
+    });
+  });
+</script>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-md navbar-dark fixed-top">
+  <a class="navbar-brand" href="homepang.html"> <img src="lo.png" alt="logo" class="logo"> </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="myNavbar">
+    <ul class="navbar-nav mx-auto">
+      <li class="nav-item active"><a class="nav-link" href="homepang.html">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="Hero list.html">Hero list</a></li>
+      <li class="nav-item"><a class="nav-link" href="News.html">News</a></li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="ddcontract" data-toggle="dropdown">Events</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item upcoming-event" href="#">Skin Free</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <a href="login.html" class="btn btn-outline-success my-2 my-sm-0">LOGIN</a>
+</nav>
+
+ <!-- Character Info with Image -->
+ <div class="character-info">
+  <img src="Liliana.jpg" alt="Character Image">
+  <div class="info">
+    <h4>ตัวละคร: Liliana </h4>
+    <p> คู่มือการเล่น Liliana 
+        <br> ข้อมูลพื้นฐานของฮีโร่ Liliana
+        <br> <b> ตำแหน่ง:</b> 	ตำแหน่ง: เมจ (Mid Lane)
+        <br>  <b>ความยาก:</b> สูง (ต้องเข้าใจจังหวะการสลับร่างและคอมโบ)
+        <br>  <b>จุดเด่น:</b>
+            มีสองร่าง (มนุษย์ & จิ้งจอก) ทำให้มีสกิลเยอะและหลากหลาย
+            ดาเมจเวทย์แรงมากทั้งระยะไกลและใกล้
+            มีสกิลพุ่งหนี ทำให้เอาตัวรอดได้ดี
+        
+        <br>  <b>จุดอ่อน:</b>
+            ควบคุมยาก ต้องเข้าใจจังหวะเข้า-ออกไฟต์
+            บางและแพ้ CC หนักๆ
+            ต้องใช้มานาเยอะในช่วงต้นเกม
+        
+        </p>
+  </div>
+</div>
+
+<!-- Review Form -->
+<div class="review-form">
+  <h4>ให้คะแนนการเล่นของตัวละคร</h4>
+
+  
+  
+  <!-- Character Rating -->
+  <div class="character-rating">
+    <h5>การเล่นของตัวละคร (ความสามารถในการต่อสู้, ทักษะ, การใช้สกิล)</h5>
+    <div class="stars">
+      <input type="radio" id="star1" name="character_rating" value="1"><label for="star1">★</label>
+      <input type="radio" id="star2" name="character_rating" value="2"><label for="star2">★</label>
+      <input type="radio" id="star3" name="character_rating" value="3"><label for="star3">★</label>
+      <input type="radio" id="star4" name="character_rating" value="4"><label for="star4">★</label>
+      <input type="radio" id="star5" name="character_rating" value="5"><label for="star5">★</label>
+    </div>
+  </div>
+
+  <!-- Skill Development Suggestion -->
+  <div class="skill-suggestion">
+    <h5>แนะนำการพัฒนาสกิลของตัวละคร</h5>
+    <textarea placeholder="เขียนข้อเสนอแนะสำหรับการพัฒนาสกิลของตัวละคร..." id="skillSuggestion"></textarea>
+  </div>
+
+  <button type="submit" id="submitReview">ส่งรีวิว</button>
+</div>
+
+<br><!-- Existing Reviews Section -->
+<div class="reviews-list">
+  <div class="review-card">
+    <div class="card-body">
+      <h5 class="card-title">Davic star</h5>
+      <div class="stars">
+        <input type="radio" id="star1a" name="rating1" value="1" checked disabled><label for="star1a">★</label>
+        <input type="radio" id="star2a" name="rating1" value="2" disabled><label for="star2a">★</label>
+        <input type="radio" id="star3a" name="rating1" value="3" disabled><label for="star3a">★</label>
+        <input type="radio" id="star4a" name="rating1" value="4" disabled><label for="star4a">★</label>
+        <input type="radio" id="star5a" name="rating1" value="5" disabled><label for="star5a">★</label>
+      </div>
+      <p class="review-text">ตัวละครนี้เก่งมาก! การใช้สกิลช่วยให้ทีมชนะในหลายสถานการณ์.</p>
+      <p class="review-date">2025-02-18</p>
+      <p><strong>ข้อเสนอแนะ:</strong> พัฒนาโอกาสในการใช้สกิลโจมตีในระยะใกล้ให้เร็วขึ้น.</p>
+    </div>
+  </div>
+
+  <div class="review-card">
+    <div class="card-body">
+      <h5 class="card-title">nicorat somter</h5>
+      <div class="stars">
+        <input type="radio" id="star1b" name="rating2" value="1" checked disabled><label for="star1b">★</label>
+        <input type="radio" id="star2b" name="rating2" value="2" disabled><label for="star2b">★</label>
+        <input type="radio" id="star3b" name="rating2" value="3" disabled><label for="star3b">★</label>
+        <input type="radio" id="star4b" name="rating2" value="4" disabled><label for="star4b">★</label>
+        <input type="radio" id="star5b" name="rating2" value="5" disabled><label for="star5b">★</label>
+      </div>
+      <p class="review-text">ตัวละครดี แต่บางสกิลยังไม่ค่อยมีประสิทธิภาพเท่าที่ควร.</p>
+      <p class="review-date">2025-02-17</p>
+      <p><strong>ข้อเสนอแนะ:</strong> ควรปรับพลังของสกิลในการโจมตีระยะไกลให้สมดุลกับคู่ต่อสู้.</p>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<script>
+$(document).ready(function() {
+  $('#submitReview').on('click', function() {
+    var characterRating = $('input[name="character_rating"]:checked').val();
+    var skillSuggestion = $('#skillSuggestion').val();
+    
+    if (characterRating && skillSuggestion) {
+      var today = new Date();
+      var date = today.getDate() + ' ' + today.toLocaleString('default', { month: 'long', locale: 'th-TH' }) + ' ' + today.getFullYear();
+      
+      // รายชื่อผู้ใช้งานแบบสุ่ม
+      var randomNames = ["สมศรี", "ภวินท์", "andew", "aunny", "stara"];
+      var randomUserName = randomNames[Math.floor(Math.random() * randomNames.length)];
+
+      var newReview = `
+        <div class="review-card">
+          <div class="card-body">
+            <h5 class="card-title">${randomUserName}</h5>
+            <div class="stars">
+              ${[...Array(5)].map((_, index) => `<input type="radio" id="star${index + 1}new" name="ratingNew" value="${index + 1}" ${index + 1 === parseInt(characterRating) ? 'checked' : ''} disabled><label for="star${index + 1}new">★</label>`).join('')}
+            </div>
+            <p class="review-text">${skillSuggestion}</p>
+            <p class="review-date">${date}</p>
+          </div>
+        </div>`;
+      
+      $('.reviews-list').prepend(newReview);
+    
+      $('input[name="character_rating"]:checked').prop('checked', false);
+      $('#skillSuggestion').val('');
+      
+      alert("รีวิวของคุณถูกส่งเรียบร้อยแล้ว!");
+    } else {
+      alert("กรุณาให้คะแนนและแสดงความคิดเห็นก่อนส่ง!");
+    }
+  });
+});
+
+</script>

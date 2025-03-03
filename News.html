@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ข่าวสารเกม</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <script src="js/jquery.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  
+  <!-- FontAwesome สำหรับไอคอน -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <style>
+    body {
+      background: url('bg.jpg') no-repeat center center fixed;
+      background-size: cover;
+      background-color: #04142f;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    .navbar {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .navbar-brand img {
+      height: 70px;
+    }
+
+    .navbar-nav .nav-link {
+      color: #fff !important;
+      font-size: 16px;
+      text-transform: uppercase;
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: #d28af2 !important;
+    }
+
+    .navbar-toggler {
+      background-color: #d28af2;
+    }
+
+    .card {
+      text-align: center;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(189, 22, 172, 0.2);
+      margin-bottom: 20px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      box-shadow: 0 20px 40px rgba(217, 28, 246, 0.425);
+      transform: translateY(-10px);
+    }
+
+    .card-img-top {
+      border-radius: 15px;
+    }
+
+    footer {
+      background-color: rgba(0, 0, 0, 0.9);
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    footer a {
+      color: white;
+      font-size: 18px;
+      margin: 0 15px;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: #d28af2;
+    }
+
+    .social-icons a {
+      font-size: 28px;
+    }
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px; /* ปรับความสูงเพื่อให้แน่ใจว่าอยู่ตรงกลาง */
+  margin-top: 20px;
+}
+.search-box {
+  width: 400px;
+  padding: 10px;
+  border: 2px solid #d28af2;
+  border-radius: 20px;
+  outline: none;
+
+  font-size: 16px;
+}
+
+
+    /* ช่องค้นหา */
+    #searchInput {
+    
+      width: 30%;
+      margin-bottom: 20px;
+      padding: 10px;
+      border: 2px solid #d28af2;
+      border-radius: 10px;
+    }
+  </style>
+
+  <script>
+    $(document).ready(function () {
+      $(".upcoming-event").click(function (e) {
+        e.preventDefault();
+        alert("📢 พบกันเร็วๆนี้! ติดตามข่าวสารเพิ่มเติมได้ที่หน้าเว็บไซต์ของเรา");
+      });
+
+      // ฟังก์ชันค้นหาข่าว
+      $("#searchInput").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $(".card").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+        });
+      });
+    });
+  </script>
+</head>
+
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-md navbar-dark fixed-top">
+  <a class="navbar-brand" href="homepang.html"> <img src="lo.png" alt="logo"> </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="myNavbar">
+    <ul class="navbar-nav mx-auto">
+      <li class="nav-item active"><a class="nav-link" href="homepang.html">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="Hero list.html">Hero list</a></li>
+      <li class="nav-item"><a class="nav-link" href="News.html">News</a></li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="ddcontract" data-toggle="dropdown">Events</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item upcoming-event" href="#">Skin Free</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <a href="login.html" class="btn btn-outline-success my-2 my-sm-0">LOGIN</a>
+</nav>
+<div class="container mt-5 pt-5">
+  <!-- ช่องค้นหาข่าว -->
+  <div class="d-flex justify-content-center mb-4">
+    <input id="searchInput" type="text" class="search-box" placeholder="🔍 ค้นหาข่าว...">
+  </div>
+  <!-- การ์ดข่าว -->
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card">
+        <img class="card-img-top" src="RV1.jpg" alt="ข่าวสาร">
+        <div class="card-body">
+          <h5 class="card-title">ข่าวสารล่าสุด</h5>
+          <a href="https://www.facebook.com/share/p/1HBMftjECp/" class="news-link">อ่านเพิ่มเติม</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card">
+        <img class="card-img-top" src="RV7.jpg" alt="ข่าวสาร">
+        <div class="card-body">
+          <h5 class="card-title">ข่าวสารใหม่</h5>
+          <a href="https://www.facebook.com/share/p/1BMqWwmbEn/" class="news-link">อ่านเพิ่มเติม</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card">
+        <img class="card-img-top" src="RV3.jpg" alt="ข่าวสาร">
+        <div class="card-body">
+          <h5 class="card-title">อัปเดตใหม่</h5>
+          <a href="https://www.facebook.com/share/p/15cqM6c9Sn/" class="news-link">อ่านเพิ่มเติม</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ส่วนท้าย -->
+<footer>
+  <div class="social-icons">
+    <a href="#"><i class="fab fa-facebook"></i></a>
+    <a href="#"><i class="fab fa-line"></i></a>
+  </div>
+  <div>© 2025 IS Game Center</div>
+</footer>
+
+</body>
+</html>

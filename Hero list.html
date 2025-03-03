@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Hero List</title>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+<!-- Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<!-- Google Fonts for modern typography -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+
+<script>
+function searchGame() {
+  var input = document.getElementById("searchInput").value.trim().toLowerCase();
+  var cards = document.getElementsByClassName("game-card");
+  var found = false; // ตรวจสอบว่ามีการ์ดที่ตรงกับการค้นหาหรือไม่
+
+  Array.from(cards).forEach(function (card) {
+    var gameTitle = card.getAttribute("data-game").toLowerCase();
+    if (gameTitle.includes(input)) {
+      card.style.display = "block"; // แสดงการ์ดที่ค้นหาเจอ
+      found = true;
+    } else {
+      card.style.display = "none"; // ซ่อนการ์ดที่ไม่ตรง
+    }
+  });
+
+  // ถ้าไม่พบข้อมูลที่ค้นหา
+  var noResultsMessage = document.getElementById("noResults");
+  if (!found) {
+    if (!noResultsMessage) {
+      noResultsMessage = document.createElement("div");
+      noResultsMessage.id = "noResults";
+      noResultsMessage.innerHTML = "<p style='color: white; text-align: center;'>ไม่พบผลลัพธ์</p>";
+      document.querySelector(".game-cards-header").appendChild(noResultsMessage);
+    }
+  } else {
+    if (noResultsMessage) {
+      noResultsMessage.remove();
+    }
+  }
+}
+</script>
+
+<style>
+  body {
+    background: url('bg.jpg') no-repeat center center fixed;
+    background-size: cover;
+    background-color: #04142f;
+    font-family: 'Roboto', sans-serif;
+    padding-top: 70px; /* Adjust padding for navbar */
+  }
+
+  /* Navbar Styles */
+  .navbar {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 15px 0;
+  }
+
+  .navbar-brand img {
+    height: 60px;
+  }
+
+  .navbar-nav .nav-link {
+    color: #fff !important;
+    font-size: 16px;
+    padding: 8px 15px;
+    text-transform: uppercase;
+  }
+
+  .navbar-nav .nav-link:hover {
+    color: #d28af2 !important;
+    text-decoration: underline;
+  }
+
+  .navbar-toggler {
+    background-color: #d28af2;
+  }
+  /* Center the Heading */
+  .game-cards-header {
+    margin-top: 50px;
+    margin-bottom: 30px;
+  }
+
+  .heading-box {
+    display: inline-block;
+    background: linear-gradient(135deg, #1e2a78, #9a1fa6); /* Dark to purple gradient */
+    padding: 13px 20px;  /* ลดขนาด padding */
+    border-radius: 50px;  /* ลดมุม */
+    text-align: left; /* Align the text to the left */
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3); /* ปรับขนาดเงา */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  /* Heading Text Styling */
+  .heading-box h2 {
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 22px; /* ลดขนาดฟอนต์ */
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px; /* ลดการเว้นระยะระหว่างตัวอักษร */
+  }
+
+  /* Hover Effect to Make the Box Interactive */
+  .heading-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 15px 35px rgba(0, 0, 0, 0.4);
+  }
+	
+  /* Card Styles */
+  .card {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  }
+
+  .card-img-top {
+    border-radius: 12px 12px 0 0;
+  }
+
+  .card-body {
+    padding: 20px;
+  }
+
+  .card-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+  }
+
+  .card-text {
+    font-size: 14px;
+    color: #777;
+    line-height: 1.6;
+  }
+
+  .btn-dark, .btn-info {
+    border-radius: 30px;
+    padding: 10px 30px;
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .btn-dark {
+    background-color: #333;
+    color: #fff;
+  }
+
+  .btn-dark:hover {
+    background-color: #444;
+  }
+
+  .btn-info {
+    background-color: #d28af2;
+    color: #fff;
+  }
+
+  .btn-info:hover {
+    background-color: #b25cd9;
+  }
+
+  
+  /* Search Bar Styles */
+  .search-bar {
+    margin: 30px auto;
+    max-width: 600px;
+    text-align: center;
+  }
+
+  .search-bar input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 30px;
+    border: 1px solid #ddd;
+  }
+
+  .search-bar input:focus {
+    outline: none;
+    border-color: #d28af2;
+  }
+
+  /* Card Layout Adjustments */
+  .game-card {
+    margin-bottom: 30px;
+  }
+
+  @media (min-width: 768px) {
+    .game-card {
+      flex: 1 1 22%;
+      margin: 10px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .game-card {
+      flex: 1 1 100%;
+    }
+	  
+  }
+  /* Footer Styles */
+  footer {
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+  }
+
+  footer a {
+    color: white;
+    margin: 0 15px;
+    font-size: 16px;
+    text-decoration: none;
+  }
+
+  footer a:hover {
+    color: #d28af2;
+  }
+
+  footer .social-icons a {
+    color: white;
+    font-size: 28px;
+    margin: 0 15px;
+  }
+
+  footer .social-icons a:hover {
+    color: #d28af2;
+  }
+
+</style>
+<script>
+  $(document).ready(function () {
+    $(".upcoming-event").click(function (e) {
+      e.preventDefault();
+      alert("📢 พบกันเร็วๆนี้! ติดตามข่าวสารเพิ่มเติมได้ที่หน้าเว็บไซต์ของเรา");
+    });
+  });
+</script>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-md navbar-dark fixed-top">
+  <a class="navbar-brand" href="homepang.html"> <img src="lo.png" alt="logo"> </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="myNavbar">
+    <ul class="navbar-nav mx-auto">
+      <li class="nav-item active"><a class="nav-link" href="homepang.html">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="Hero list.html">Hero list</a></li>
+      <li class="nav-item"><a class="nav-link" href="News.html">News</a></li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="ddcontract" data-toggle="dropdown">Events</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item upcoming-event" href="#">Skin Free</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <a href="login.html" class="btn btn-outline-success my-2 my-sm-0">LOGIN</a>
+</nav>
+
+
+
+  <!-- Search Section -->
+  <div class="game-cards-header text-center">
+    <div class="heading-box">
+      <h2>Search Hero List</h2>
+    </div>
+  </div>
+  <div class="search-bar">
+    <form class="form-inline justify-content-center">
+      <input type="text" id="searchInput" class="form-control" placeholder="Search..." onkeyup="searchGame()">
+    </form>
+  </div>
+
+  <div class="game-cards-header ">
+    <div class="heading-box">
+      <h2>Jungle</h2>
+    </div>
+  </div>
+
+  <!-- Game Cards Section -->
+  <div class="row d-flex justify-content-between">
+    <div class="col-md-3 game-card" data-game="Butterfly">
+      <div class="card">
+        <img class="card-img-top" src="Butterfly.jpg" alt="Butterfly">
+        <div class="card-body">
+          <h5 class="card-title">Butterfly</h5>
+          <p class="card-text">มีพลังโจมตีสูง สามารถสังหารศัตรูได้อย่างรวดเร็ว  </p>
+          <a class="btn btn-dark" href="Review.html">เลือกตัวละคร</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 game-card" data-game="Sinestrea">
+      <div class="card">
+        <img class="card-img-top" src="Sinestrea.jpg" alt="Sinestrea">
+        <div class="card-body">
+          <h5 class="card-title">Sinestrea</h5>
+          <p class="card-text">มีดาเมจคริติคอลแรงมาก สามารถล้วงศัตรูได้เร็ว สลับเลือดกับศัตรู  </p>
+          <a class="btn btn-dark" href="Review3.html">เลือกตัวละคร</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 game-card" data-game="Nakroth">
+      <div class="card">
+        <img class="card-img-top" src="Nakroth.jfif" alt="Nakroth">
+        <div class="card-body">
+          <h5 class="card-title">Nakroth</h5>
+          <p class="card-text">ดาเมจแรง คล่องตัว ปรับเปลี่ยนสไตล์การโจมตีตามพื้นดิน</p>
+          <a class="btn btn-dark" href="Review13.html">เลือกตัวละคร</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 game-card" data-game="Kriknak">
+      <div class="card">
+        <img class="card-img-top" src="Kriknak1.jfif" alt="Kriknak">
+        <div class="card-body">
+          <h5 class="card-title">Kriknak</h5>
+          <p class="card-text">จุดเด่น ดาเมจระเบิดแรง ฟาร์มไว มีความเร็วเคลื่อนที่สูง</p>
+          <a class="btn btn-dark" href="Review24.html">เลือกตัวละคร</a>
+        </div>
+      </div>
+    </div>
+  </div>
+	  <div class="game-cards-header ">
+    <div class="heading-box">
+      <h2>Dark Slayer</h2>
+    </div>
+  </div>
+
+  <div class="row d-flex justify-content-between">
+    <div class="col-md-3 game-card" data-game="Florentino">
+      <div class="card">
+        <img class="card-img-top" src="Florentino.jfif" alt="Florentino">
+        <div class="card-body">
+          <h5 class="card-title">Florentino</h5>
+          <p class="card-text">1v1 ได้ดี มีความคล่องตัวสูงสามารถทำคอมโบได้ต่อเนื่อง</p>
+          <a class="btn btn-dark" href="Review4.html">เลือกตัวละคร</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 game-card" data-game="Airi">
+      <div class="card">
+        <img class="card-img-top" src="Airi.jpeg" alt="Airi">
+        <div class="card-body">
+          <h5 class="card-title">Airi</h5>
+          <p class="card-text">มีความคล่องตัวสูง มีสกิลทำให้สามารถหยุดศัตรูได้</p>
+          <a class="btn btn-dark" href="Review2.html">เลือกตัวละคร</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 game-card" data-game="Omen">
+      <div class="card">
+        <img class="card-img-top" src="Omen.jpg" alt="Omen">
+        <div class="card-body">
+          <h5 class="card-title">Omen</h5>
+          <p class="card-text">จุดเด่น โซโล่ 1v1 โหด ดูดเลือดดี คอมโบต่อเนื่อง</p>
+          <a class="btn btn-dark" href="Review15.html">เลือกตัวละคร</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 game-card" data-game="Riktor">
+      <div class="card">
+        <img class="card-img-top" src="Riktor.jpg" alt="Riktor">
+        <div class="card-body">
+          <h5 class="card-title">Riktor</h5>
+          <p class="card-text">ดาเมจแรง คล่องตัว ปรับเปลี่ยนสไตล์การโจมตีตามพื้นดิน</p>
+          <a class="btn btn-dark" href="Review14.html">เลือกตัวละคร</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+	  <div class="game-cards-header ">
+    <div class="heading-box">
+      <h2>Mid Lane</h2>
+    </div>
+  </div>
+
+  <div class="row d-flex justify-content-between">
+    <div class="col-md-3 game-card" data-game="Krixi">
+      <div class="card">
+        <img class="card-img-top" src="Krixi1.jpg" alt="Krixi">
+        <div class="card-body">
+          <h5 class="card-title">Krixi</h5>
+          <p class="card-text">ดาเมจเวทย์ รุนแรงและต่อเนื่อง คอมโบง่าย </p>
+          <a class="btn btn-dark" href="Review5.html">เลือกตัวละคร</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 game-card" data-game="Liliana">
+      <div class="card">
+        <img class="card-img-top" src="Liliana.jpg" alt="Liliana">
+        <div class="card-body">
+          <h5 class="card-title">Liliana</h5>
+          <p class="card-text">มีดาเมจเวทย์แรงทั้งระยะไกลและใกล้ เอาตัวรอดได้ดี</p>
+          <a class="btn btn-dark" href="Review6.html">เลือกตัวละคร</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 game-card" data-game="Ishar">
+      <div class="card">
+        <img class="card-img-top" src="Ishar.jpg" alt="Ishar">
+        <div class="card-body">
+          <h5 class="card-title">Ishar</h5>
+          <p class="card-text">มีสัตว์เลี้ยงช่วยโจมตีและรับดาเมจ ช่วยซัพพอร์ตหรือเมจดาเมจไฟต์ </p>
+          <a class="btn btn-dark" href="Review7.html">เลือกตัวละคร</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 game-card" data-game="Diao Chan">
+      <div class="card">
+        <img class="card-img-top" src="Diao Chan.jpg" alt="Diao Chan">
+        <div class="card-body">
+          <h5 class="card-title">Diao Chan</h5>
+          <p class="card-text">มีสกิลที่ช่วยควบคุมศัตรูในไฟต์ได้ดี ดาเมจรุนแรงในพื้นที่กว้าง</p>
+          <a class="btn btn-dark" href="Review8.html">เลือกตัวละคร</a>
+        </div>
+      </div>
+    </div>
+  </div>
+	  <div class="game-cards-header ">
+    <div class="heading-box">
+      <h2>abyssal dragon</h2>
+    </div>
+  </div>
+
+
+  <div class="row d-flex justify-content-between">
+    <div class="col-md-3 game-card" data-game="Violet">
+      <div class="card">
+        <img class="card-img-top" src="Violet.jpg" alt="Violet">
+        <div class="card-body">
+          <h5 class="card-title">Violet</h5>
+          <p class="card-text">ดาเมจระยะไกลที่สูง สามารถใช้การเคลื่อนที่และหลบได้ด้วยสกิล</p>
+          <a class="btn btn-dark" href="Review9.html">เลือกตัวละคร</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 game-card" data-game="Tel'Annas">
+      <div class="card">
+        <img class="card-img-top" src="Tel'Annas.jpg" alt="Tel'Annas">
+        <div class="card-body">
+          <h5 class="card-title">Tel'Annas</h5>
+          <p class="card-text">ดาเมจระยะไกลที่แรงมาก มีสกิลการทำดาเมจต่อเนื่อง </p>
+          <a class="btn btn-dark" href="Review10.html">เลือกตัวละคร</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 game-card" data-game="Hayate">
+      <div class="card">
+        <img class="card-img-top" src="Hayate.jpg" alt="Hayate">
+        <div class="card-body">
+          <h5 class="card-title">Hayate</h5>
+          <p class="card-text">สกิลการเคลื่อนที่ที่ช่วยในการหลบหลีกและสร้างดาเมจ </p>
+          <a class="btn btn-dark" href="Review11.html">เลือกตัวละคร</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 game-card" data-game="Capheny">
+      <div class="card">
+        <img class="card-img-top" src="Capheny.jpg" alt="Capheny">
+        <div class="card-body">
+          <h5 class="card-title">Capheny</h5>
+          <p class="card-text">โจมตีได้ทั้งระยะใกล้และไกล มีความสามารถในคุมพื้นที่ได้ดี </p>
+          <a class="btn btn-dark" href="Review12.html">เลือกตัวละคร</a>
+        </div>
+      </div>
+    </div>
+  </div>
+	  <div class="game-cards-header ">
+    <div class="heading-box">
+      <h2>support</h2>
+    </div>
+  </div>
+
+
+  <div class="row d-flex justify-content-between">
+    <div class="col-md-3 game-card" data-game="Alice">
+      <div class="card">
+        <img class="card-img-top" src="Alice.jpg" alt="Alice">
+        <div class="card-body">
+          <h5 class="card-title">Alice</h5>
+          <p class="card-text">มีความสามรถช่วยเพื่อน สโลว์ศัตรู สร้างโล่ป้องกัน</p>
+          <a class="btn btn-dark" href="Review16.html">เลือกตัวละคร</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 game-card" data-game="Annette">
+      <div class="card">
+        <img class="card-img-top" src="Annette.jpg" alt="Annette">
+        <div class="card-body">
+          <h5 class="card-title">Annette</h5>
+          <p class="card-text">ขัดจังหวะศัตรู คุมทีมไฟต์ดี <br>ฟื้นฟูพลังชีวิต</p>
+          <a class="btn btn-dark" href="Review17.html">เลือกตัวละคร</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 game-card" data-game="Rouie">
+      <div class="card">
+        <img class="card-img-top" src="Rouie.jpg" alt="Rouie">
+        <div class="card-body">
+          <h5 class="card-title">Rouie</h5>
+          <p class="card-text">สามารถวาร์ปเพื่อน สนับสนุนทีมได้ดี โกงจังหวะไฟต์</p>
+          <a class="btn btn-dark" href="Review18.html">เลือกตัวละคร</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 game-card" data-game="Zip">
+      <div class="card">
+        <img class="card-img-top" src="Zip.jpg" alt="Zip">
+        <div class="card-body">
+          <h5 class="card-title">Zip</h5>
+          <p class="card-text">กลืนเพื่อนหนี สร้างความปั่นป่วนในทีมไฟต</p>
+          <a class="btn btn-dark" href="Review19.html">เลือกตัวละคร</a>
+        </div>
+      </div>
+    </div>
+  </div>
+	  <div class="game-cards-header ">
+    <div class="heading-box">
+      <h2>Tank</h2>
+    </div>
+  </div>
+
+  <div class="row d-flex justify-content-between">
+    <div class="col-md-3 game-card" data-game="Thane">
+      <div class="card">
+        <img class="card-img-top" src="Thane.jpg" alt="Thane">
+        <div class="card-body">
+          <h5 class="card-title">Thane</h5>
+          <p class="card-text">มีค่า HP เกราะ ที่สูง มีสกิลป้องกันตัวเอง และมีสกิลป่วนทีมไฟต์</p>
+          <a class="btn btn-dark" href="Review20.html">เลือกตัวละคร</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 game-card" data-game="Baldum">
+      <div class="card">
+        <img class="card-img-top" src="Baldum.jpg" alt="Baldum">
+        <div class="card-body">
+          <h5 class="card-title">Baldum</h5>
+          <p class="card-text">ควบคุมศัตรูหนัก ทนทานสูง และมีสกิลในการทำลายไฟต์</p>
+          <a class="btn btn-dark" href="Review21.html">เลือกตัวละคร</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 game-card" data-game="Mina">
+      <div class="card">
+        <img class="card-img-top" src="Mina.jpg" alt="Mina">
+        <div class="card-body">
+          <h5 class="card-title">Mina</h5>
+          <p class="card-text">ดึงศัตรูให้โจมตีตัวเอง สะท้อนดาเมจกลับไปได้</p>
+          <a class="btn btn-dark" href="Review22.html">เลือกตัวละคร</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 game-card" data-game="Toro">
+      <div class="card">
+        <img class="card-img-top" src="Toro.jpg" alt="Toro">
+        <div class="card-body">
+          <h5 class="card-title">Toro</h5>
+          <p class="card-text">ทนทานมาก ไม่โดนสถานะ<br>ควบคุมง่าย</p>
+          <a class="btn btn-dark" href="Review23.html">เลือกตัวละคร</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Footer -->
+<footer>
+ <div class="social-icons">
+    <a href="https://www.facebook.com/share/15y4MdSMxr/?mibextid=wwXIfr"><i class="fab fa-facebook"></i></a>
+    <a href="https://line.me/ti/g2/cnnSU9R1-YX_oiuOVE_eayRZbWswiarEbQ5B3Q?utm_source=invitation&utm_medium=link_copy&utm_campaign=default"><i class="fab fa-line"></i></a>
+  </div>
+
+  <div>
+    <span>© 2025 IS Game Center</span>
+  </div>
+</footer>
+
+</body>
+</html>

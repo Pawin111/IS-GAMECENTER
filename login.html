@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: url('bg.jpg') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      height: 100vh;
+      padding-left: 50px;
+      padding-top: 50px;
+      color: #fff;
+    }
+
+    .login-container {
+      background: rgba(31, 22, 16, 0.8);
+      padding: 20px;
+      border-radius: 10px;
+      width: 300px;
+      text-align: center;
+      box-shadow: 0 8px 15px rgba(171, 61, 17, 0.5);
+    }
+
+    .logo {
+      width: 150px; /* ปรับขนาดโลโก้ */
+      margin-bottom: 5px;
+    }
+
+    .login-container h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+
+    .input-group {
+      margin-bottom: 15px;
+      text-align: left;
+    }
+
+    .input-group label {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+
+    .input-group input {
+      width: 95%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      outline: none;
+    }
+
+    .login-button {
+      background-color: #973e2e;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .login-button:hover {
+      background-color: #614517;
+    }
+
+    .links {
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .links a {
+      color: #007BFF;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+
+    .links a:hover {
+      text-decoration: underline;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <img src="lo.png" alt="logo" class="logo">
+    <h1>LOGIN</h1>
+    <p>Please Login to your account</p>
+    <form action="homepang.html">
+      <div class="input-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" placeholder="Enter your username">
+      </div>
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password">
+      </div>
+      <button type="submit" class="login-button">LOGIN</button>
+    </form>
+    <div class="links">
+       <a href="Register.html">Registration</a>
+    </div>
+  </div>
+</body>
+</html>
